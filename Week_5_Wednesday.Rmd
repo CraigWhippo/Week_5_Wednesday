@@ -1,0 +1,92 @@
+---
+title: "Week 5 Wednesday"
+output: html_notebook
+---
+
+
+
+
+```{r}
+library(nycflights13)
+library(ggplot2)
+```
+
+1.  What is the anatomy of a boxplot
+
+2.  Before running the code chunk below, explain what you think it does.
+
+```{r}
+ggplot(data = weather, mapping = aes(x = month, y = temp)) +
+  geom_boxplot()
+```
+
+## factors matter.
+
+3.  Compare the code in the code chuck below with the previous code.  How is it different from the previous code?
+
+```{r}
+ggplot(data = weather, mapping = aes(x = factor(month), y = temp)) +
+  geom_boxplot()
+```
+
+
+4. What does the dot at the bottom of the plot for May correspond to?  What may have happened to produce this point?
+
+5. Which months have the highest variability in temperature?  What reasons can you give for this?
+
+6. We looked at the distribution of the numerical variable `temp` split by the numerical variable `month` that we converted to a categorical variable using the factor() function. Why would a boxplot of `temp` split by the numerical variable `pressure` similarly converted to a categorical variable using the factor() not be informative?
+
+7. Boxplots provide a simple way to identify outliers. Why may outliers be easier to identify when looking at a boxplot instead of a faceted histogram?
+
+
+# Barplots
+
+Distribution of categorical variables.  Counting categories of of a categorical variable
+
+8. Run the code below and describe the results
+
+```{r}
+library(dplyr)
+
+fruits <- tibble(
+  fruit = c("apple", "apple", "orange", "apple", "orange")
+)
+
+fruits_counted <- tibble(
+  fruit = c("apple", "orange"),
+  number = c(3, 2)
+)
+```
+
+## Barplots via geom_bar or geom_col
+
+9. Before running the code below, discuss what the code does.
+
+```{r}
+library(ggplot2)
+ggplot(data = fruits, mapping = aes(x = fruit)) +
+  geom_bar()
+```
+
+10.  What is the the result of the code above?
+
+11.  Before running the code below, predict what the outcome will be.
+
+```{r}
+ggplot(data = fruits_counted, mapping = aes(x = fruit, y = number)) +
+  geom_col()
+```
+
+12. Compare the previous barplots.  
+13. When do you use geom_bar()
+14. When do you use geom_col()
+15. Create a new code chuck below.  Using the `flights` data frame in `nycflignts13` visualize the distribution of the categroical variable `carrier`.
+16. Why are histograms inappropriate for visualizing categorical variables?
+17. What is the difference between histograms and barplots?
+18. How many Envoy flights departed NYC in 2013?
+
+# Must avoid pie charts.
+
+Humans are unable to evaluate angles well.  
+
+![](https://d33wubrfki0l68.cloudfront.net/671d52a2274d4b97c357c1eb5636acaa5683c471/047a5/moderndive_files/figure-html/carrierpie-1.png)
